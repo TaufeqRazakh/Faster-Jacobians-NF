@@ -1,6 +1,6 @@
 # Fast training of Autoregressive flows when using Sum-of-Squares Polynomial Flow
 
-[Normalising Flows](https://arxiv.org/abs/1505.05770) are a family of generative models.it is  a  transformation  of  a  simple probability distribution (e.g., a standard normal) into a more complex distribution by a sequence of invertible and differentiable mappings.
+[Normalising Flows](https://arxiv.org/abs/1505.05770) are a family of generative models. A  transformation  of  a  simple probability distribution (e.g., a standard normal) into a more complex distribution by a sequence of invertible and differentiable mappings.
 
 You might be familiar with the generative neural approaches namely
 + [generative adversarial networks(GANs)](https://arxiv.org/abs/1406.2661)
@@ -17,3 +17,10 @@ But they have their limitations making them not so usable for scientific computi
 + [Physics](https://arxiv.org/abs/1812.01729), [more physics](https://arxiv.org/abs/2002.09491) etc.
 
 > Cica 2019 - ...
+
+## What is the training essense ?
+
++ Choose an initial density
++ Chain some parameterized, invertible and differentiable transformations.
+
+ 

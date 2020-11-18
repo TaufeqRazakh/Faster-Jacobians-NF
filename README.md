@@ -64,7 +64,7 @@ But we will use non-linear functions
 + Auto regressive model in feed forward NN setting where each group of neurons is connected to preceeding timestep. This will guarantee us that the Jacobian will have triangular form
 
 ## Inverting a neural network
-Manage the bijectivity constraint
+This can be considered as a second challenge of managing the bijectivity constraint
 
 ## What are we looking for
 
@@ -74,3 +74,4 @@ Is there an architecture that can be converted into a linkedlist representation 
 ## Inspiration
 
 + [Scalable Data-Privatization Threading for Hybrid MPI/OpenMP Parallelization of Molecular Dynamics, Kunaseth, et. al. (2011)](http://cacs.usc.edu/papers/kunaseth-ScalableHybridMD-PDPTA20110.pdf)
++ [Accurate, Large Minibatch SGD:Training ImageNet in 1 Hour](https://research.fb.com/wp-content/uploads/2017/06/imagenet1kin1h5.pdf)

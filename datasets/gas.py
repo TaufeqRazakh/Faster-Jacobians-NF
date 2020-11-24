@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 import datasets
-from . import util
+import datasets.util
 
 
 class GAS:

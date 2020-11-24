@@ -3,7 +3,7 @@ import h5py
 import matplotlib.pyplot as plt
 
 import datasets
-from . import util
+import datasets.util
 
 
 class BSDS300:
@@ -75,4 +75,3 @@ class BSDS300:
         util.disp_imdata(images, self.image_size, [6, 10])
 
         plt.show()
-

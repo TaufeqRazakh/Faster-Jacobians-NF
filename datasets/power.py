@@ -30,7 +30,7 @@ class POWER:
         if data_split is None:
             raise ValueError('Invalid data split')
 
-        datasets.util.plot_hist_marginals(data_split.x)
+        util.plot_hist_marginals(data_split.x)
         plt.show()
 
 

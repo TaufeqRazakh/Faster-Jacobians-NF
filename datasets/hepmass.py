@@ -5,7 +5,7 @@ from collections import Counter
 from os.path import join
 
 import datasets
-from . import util
+import datasets.util
 
 
 class HEPMASS:

@@ -232,7 +232,6 @@ class FlowSequential(nn.Sequential):
 # --------------------
 # Models
 # --------------------
-
 class MADE(nn.Module):
     def __init__(self, input_size, hidden_size, n_hidden, cond_label_size=None, activation='relu', input_order='sequential', input_degrees=None):
         """
@@ -273,10 +272,19 @@ class MADE(nn.Module):
     def base_dist(self):
         return D.Normal(self.base_dist_mean, self.base_dist_var)
 
+    def compute_diff(self, x, m):
+        return x - m
+
     def forward(self, x, y=None):
         # MAF eq 4 -- return mean and log std
         m, loga = self.net(self.net_input(x, y)).chunk(chunks=2, dim=1)
-        u = (x - m) * torch.exp(-loga)
+        diff_fut = torch.jit._fork(self.compute_diff, x, m)
+
+        u_half = torch.exp(-loga)
+
+        diff = torch.jit._wait(diff_fut)
+
+        u = diff * u_half
         # MAF eq 5
         log_abs_det_jacobian = - loga
         return u, log_abs_det_jacobian

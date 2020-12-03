@@ -75,3 +75,33 @@ Is there an architecture that can be converted into a linkedlist representation 
 
 + [Scalable Data-Privatization Threading for Hybrid MPI/OpenMP Parallelization of Molecular Dynamics, Kunaseth, et. al. (2011)](http://cacs.usc.edu/papers/kunaseth-ScalableHybridMD-PDPTA20110.pdf)
 + [Accurate, Large Minibatch SGD:Training ImageNet in 1 Hour](https://research.fb.com/wp-content/uploads/2017/06/imagenet1kin1h5.pdf)
+
+## Some steps followed
+
+Pytorch's CPU threading feature 
+
+```python
+
+    def compute_diff(self, x, m):
+        return x - m
+
+    def forward(self, x, y=None):
+        # MAF eq 4 -- return mean and log std
+        m, loga = self.net(self.net_input(x, y)).chunk(chunks=2, dim=1)
+        diff_fut = torch.jit._fork(self.compute_diff, x, m)
+
+        u_half = torch.exp(-loga)
+
+        diff = torch.jit._wait(diff_fut)
+
+        u = diff * u_half
+        # MAF eq 5
+        log_abs_det_jacobian = - loga
+        return u, log_abs_det_jacobian
+		
+```
+
+## Performance achieved 
+
+## Credits 
+A huge thank you to [@kamenbliznashki](https://github.com/kamenbliznashki) for implementing the orignial code for normalizing_flows available and for making life of a future gradaute student much easier
